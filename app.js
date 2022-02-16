@@ -25,8 +25,11 @@ function totalBalance() {
 }
 
 document.getElementById("saving-btn").addEventListener("click", function () {
-  saveMoney();
+  document.getElementById("total-buy-save").innerText = saveMoney();
+  document.getElementById("total-buy-money").innerText =
+    totalBalance() - saveMoney();
 });
+
 function saveMoney() {
   const saveAmount = document.getElementById("saving-amount");
   const saveBalance =
