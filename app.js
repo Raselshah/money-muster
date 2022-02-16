@@ -16,6 +16,7 @@ function calculateUserCost() {
   const foodCost = commonId("food-cost");
   const rentCost = commonId("rent-cost");
   const clothesCost = commonId("clothes-cost");
+
   const totalCost =
     parseInt(foodCost.value) +
     parseInt(rentCost.value) +
