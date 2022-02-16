@@ -1,15 +1,21 @@
-document
-  .getElementById("calculation-btn")
-  .addEventListener("click", function () {
-    calculate();
-    document.getElementById("total-buy").innerText = calculate();
-    document.getElementById("total-money").innerText = totalBalance();
-  });
+// js start now
 
-function calculate() {
-  const foodCost = document.getElementById("food-cost");
-  const rentCost = document.getElementById("rent-cost");
-  const clothesCost = document.getElementById("clothes-cost");
+// calculation button developing
+commonId("calculation-btn").addEventListener("click", function () {
+  commonId("total-buy").innerText = calculateUserCost();
+  commonId("total-money").innerText = totalBalance();
+});
+
+//   same id element convert to function
+function commonId(para) {
+  return document.getElementById(para);
+}
+
+// calculation user cost amount
+function calculateUserCost() {
+  const foodCost = commonId("food-cost");
+  const rentCost = commonId("rent-cost");
+  const clothesCost = commonId("clothes-cost");
   const totalCost =
     parseInt(foodCost.value) +
     parseInt(rentCost.value) +
@@ -18,20 +24,21 @@ function calculate() {
   return totalCost;
 }
 
+// remaining balance calculation after buying
 function totalBalance() {
-  const userMoney = document.getElementById("user-money");
-  const remainingBalance = parseInt(userMoney.value) - calculate();
+  const userMoney = commonId("user-money");
+  const remainingBalance = parseInt(userMoney.value) - calculateUserCost();
   return remainingBalance;
 }
 
-document.getElementById("saving-btn").addEventListener("click", function () {
-  document.getElementById("total-buy-save").innerText = saveMoney();
-  document.getElementById("total-buy-money").innerText =
-    totalBalance() - saveMoney();
+// saving balance user total money button developing
+commonId("saving-btn").addEventListener("click", function () {
+  commonId("total-buy-save").innerText = saveMoney();
+  commonId("total-buy-money").innerText = totalBalance() - saveMoney();
 });
 
 function saveMoney() {
-  const saveAmount = document.getElementById("saving-amount");
+  const saveAmount = commonId("saving-amount");
   const saveBalance =
     parseInt(totalBalance()) * (parseInt(saveAmount.value) / 100);
   return saveBalance;
