@@ -2,6 +2,19 @@
 
 // calculation button developing
 commonId("calculation-btn").addEventListener("click", function () {
+  // user error checking
+  if (
+    commonId("food-cost").value == "" ||
+    commonId("rent-cost").value == "" ||
+    commonId("clothes-cost").value == "" ||
+    commonId("food-cost").value <= 0 ||
+    commonId("rent-cost").value <= 0 ||
+    commonId("clothes-cost").value <= 0
+  ) {
+    commonId("alert-message-2").style.display = "block";
+    return;
+  }
+  commonId("alert-message-2").style.display = "none";
   commonId("total-buy").innerText = calculateUserCost();
   commonId("total-money").innerText = totalBalance();
 });
@@ -28,12 +41,23 @@ function calculateUserCost() {
 // remaining balance calculation after buying
 function totalBalance() {
   const userMoney = commonId("user-money");
+  if (userMoney.value < calculateUserCost()) {
+    commonId("alert-message-1").style.display = "block";
+    return;
+  }
+  commonId("alert-message-1").style.display = "none";
   const remainingBalance = parseInt(userMoney.value) - calculateUserCost();
   return remainingBalance;
 }
 
 // saving balance user total money button developing
 commonId("saving-btn").addEventListener("click", function () {
+  // user error checking
+  if (totalBalance() < saveMoney() || commonId("saving-amount").value == "") {
+    commonId("alert-message-3").style.display = "block";
+    return;
+  }
+  commonId("alert-message-3").style.display = "none";
   commonId("total-buy-save").innerText = saveMoney();
   commonId("total-buy-money").innerText = totalBalance() - saveMoney();
 });
@@ -41,6 +65,7 @@ commonId("saving-btn").addEventListener("click", function () {
 function saveMoney() {
   const saveAmount = commonId("saving-amount");
   const saveBalance =
-    parseInt(totalBalance()) * (parseInt(saveAmount.value) / 100);
+    parseInt(parseInt(commonId("user-money").value)) *
+    (parseInt(saveAmount.value) / 100);
   return saveBalance;
 }
