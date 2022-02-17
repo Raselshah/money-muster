@@ -19,6 +19,12 @@ commonId("calculation-btn").addEventListener("click", function () {
   }
   commonId("alert-message-2").style.display = "none";
   commonId("total-buy").innerText = calculateUserCost();
+  // user error checking
+  if (commonId("user-money").value <= 0) {
+    commonId("alert-message-4").style.display = "block";
+    return;
+  }
+  commonId("alert-message-4").style.display = "none";
   commonId("total-money").innerText = totalBalance();
 });
 
