@@ -12,6 +12,9 @@ commonId("calculation-btn").addEventListener("click", function () {
     commonId("clothes-cost").value <= 0
   ) {
     commonId("alert-message-2").style.display = "block";
+    commonId("total-buy").innerText = 00;
+    commonId("total-money").innerText = 00;
+
     return;
   }
   commonId("alert-message-2").style.display = "none";
@@ -55,6 +58,8 @@ commonId("saving-btn").addEventListener("click", function () {
   // user error checking
   if (totalBalance() < saveMoney() || commonId("saving-amount").value == "") {
     commonId("alert-message-3").style.display = "block";
+    commonId("total-buy-save").innerText = 00;
+    commonId("total-buy-money").innerText = 00;
     return;
   }
   commonId("alert-message-3").style.display = "none";
